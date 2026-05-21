@@ -101,13 +101,27 @@ img, .image-container {
     overflow-wrap: break-word; /* Safe word wrapping — never use break-all (destroys English words) */
 }
 
-/* 10. Ensure text doesn't overflow containers */
-h1, h2, h3, h4, h5, h6 {
+/* 10. Ensure text NEVER overflows its container */
+h1, h2, h3, h4, h5, h6, p, li, blockquote, span, a, strong, em, label, div {
+    max-width: 100%;
     overflow-wrap: break-word;
-    hyphens: auto;
+    word-break: keep-all; /* Prevents breaking words mid-character; CJK breaks at character boundaries */
 }
 
-p, li, blockquote {
+/* Stronger protection for containers that hold large text */
+h1, h2, h3, h4, h5, h6 {
+    overflow: hidden;
+    text-overflow: ellipsis; /* Last resort: if text still overflows, show ... */
+}
+
+/* CJK: allow normal character-level line breaking */
+:lang(zh) h1, :lang(zh) h2, :lang(zh) h3, :lang(zh) h4, :lang(zh) h5, :lang(zh) h6,
+:lang(zh) p, :lang(zh) li, :lang(zh) blockquote,
+:lang(ja) h1, :lang(ja) h2, :lang(ja) h3, :lang(ja) h4, :lang(ja) h5, :lang(ja) h6,
+:lang(ja) p, :lang(ja) li, :lang(ja) blockquote,
+:lang(ko) h1, :lang(ko) h2, :lang(ko) h3, :lang(ko) h4, :lang(ko) h5, :lang(ko) h6,
+:lang(ko) p, :lang(ko) li, :lang(ko) blockquote {
+    word-break: normal; /* CJK breaks naturally at character boundaries */
     overflow-wrap: break-word;
 }
 

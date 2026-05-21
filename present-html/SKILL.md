@@ -101,6 +101,7 @@ These invariants apply to EVERY slide in EVERY presentation:
 - ALL font sizes and spacing must use `clamp(min, preferred, max)` — never fixed px/rem
 - **Default font sizes should be generous** — presentations are meant to be read at a distance. Minimum baselines: title `clamp(2.8rem, 6vw, 5.5rem)`, h2 `clamp(1.8rem, 3.8vw, 3.2rem)`, h3 `clamp(1.2rem, 2vw, 1.6rem)`, body `clamp(1rem, 1.6vw, 1.25rem)`, small/caption `clamp(0.8rem, 1.2vw, 1rem)`. When in doubt, go bigger.
 - Content containers need `max-height` constraints
+- **Text containment (NON-NEGOTIABLE)**: All text elements MUST have `max-width: 100%` and `overflow-wrap: break-word`. Headings additionally need `overflow: hidden; text-overflow: ellipsis`. No text may ever overflow its container horizontally.
 - Images: `max-height: min(50vh, 400px)`
 - Breakpoints required for heights: 700px, 600px, 500px
 - Include `prefers-reduced-motion` support
